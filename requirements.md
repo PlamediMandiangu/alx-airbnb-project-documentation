@@ -1,98 +1,103 @@
-\# Airbnb Clone - Backend Requirements
+# Airbnb Clone - Backend Requirements
 
+This document defines the technical and functional requirements for the core backend features of the Airbnb Clone project, including User Authentication, Property Management, and Booking System.
 
+## User Authentication
 
-\## 1. User Authentication
+Enables both guests and hosts to register, log in, and manage sessions securely using JSON Web Tokens (JWT).
 
+**API Endpoints:**
+- `POST /api/register`
+- `POST /api/login`
+- `GET /api/logout`
 
+## Property Management
 
-\### Functional Description
+Allows hosts to create and manage property listings.
 
-Allows users (hosts/guests) to register, log in, and manage sessions securely using JWT.
+**API Endpoints:**
+- `POST /api/properties`
 
+## Booking System
 
+Allows users to book listed properties.
 
-\### API Endpoints
+**API Endpoints:**
+- `POST /api/bookings`
 
-\- `POST /api/register`  
+## Example Combined Flow
 
-\- `POST /api/login`  
-
-\- `GET /api/logout`
-
-
-
-\### Input/Output
-
-\*\*Register\*\*  
-
-Request:
-
+### 🔐 Registration Request
 ```json
-
 {
-
-&nbsp; "email": "user@example.com",
-
-&nbsp; "password": "securePassword123"
-
+  "email": "user@example.com",
+  "password": "securePassword123"
 }
+```
 
-
-
+### ✅ Registration Response
+```json
 {
-
-&nbsp; "message": "Registration successful",
-
-&nbsp; "token": "JWT\_TOKEN"
-
+  "message": "Registration successful",
+  "token": "JWT_TOKEN"
 }
+```
 
-
-
+### 🔐 Login Request
+```json
 {
-
-&nbsp; "title": "Cozy Cabin",
-
-&nbsp; "description": "A quiet getaway in the woods",
-
-&nbsp; "price": 120,
-
-&nbsp; "location": "Cape Town"
-
+  "email": "user@example.com",
+  "password": "securePassword123"
 }
+```
 
-
-
+### ✅ Login Response
+```json
 {
-
-&nbsp; "message": "Property listed",
-
-&nbsp; "property\_id": 102
-
+  "message": "Login successful",
+  "token": "JWT_TOKEN"
 }
+```
 
-
-
+### 🚪 Logout Response
+```json
 {
-
-&nbsp; "property\_id": 102,
-
-&nbsp; "check\_in": "2025-08-01",
-
-&nbsp; "check\_out": "2025-08-05",
-
-&nbsp; "guests": 2
-
+  "message": "Logout successful"
 }
+```
 
-
-
+### 🏡 Property Listing Request
+```json
 {
-
-&nbsp; "message": "Booking confirmed",
-
-&nbsp; "booking\_id": 304
-
+  "title": "Cozy Cabin",
+  "description": "A quiet getaway in the woods",
+  "price": 120,
+  "location": "Cape Town"
 }
+```
 
+### ✅ Property Listing Response
+```json
+{
+  "message": "Property listed",
+  "property_id": 102
+}
+```
+
+### 📆 Booking Request
+```json
+{
+  "property_id": 102,
+  "check_in": "2025-08-01",
+  "check_out": "2025-08-05",
+  "guests": 2
+}
+```
+
+### ✅ Booking Response
+```json
+{
+  "message": "Booking confirmed",
+  "booking_id": 304
+}
+```
